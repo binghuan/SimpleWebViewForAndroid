@@ -4,46 +4,68 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    android:background="@android:color/black"
     tools:context="com.bh.android.webclient.MainActivity">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
             android:id="@+id/btnBack"
-            android:text="Back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_navigate_back" />
+
         <EditText
-            android:layout_weight="1"
-            android:background="@android:color/white"
-            android:text="https://binghuan.github.io/QandACard/index2oin1.html"
             android:id="@+id/textUrl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <Button
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:minLines="3"
+            android:text="https://binghuan.github.io/QandACard/index2oin1.html" />
+
+        <ImageView
             android:id="@+id/btnLoadUrl"
-            android:text="Load"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_navigate_load" />
 
     </LinearLayout>
 
-    <TextView
-        android:text="H:250px, W: 300px"
-        android:textColor="@android:color/white"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <WebView
-        android:id="@+id/webview"
-        android:layout_width="300dp"
-        android:layout_height="250dp"/>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="H:250px, W: 300px"
+                android:textColor="@android:color/white" />
+
+            <WebView
+                android:id="@+id/webview"
+                android:layout_width="300dp"
+                android:layout_height="250dp" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
 
 </LinearLayout>

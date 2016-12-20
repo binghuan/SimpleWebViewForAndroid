@@ -7,16 +7,16 @@ import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
     private WebView mWebView = null;
     private Context mContext = null;
 
-    private Button mButtonLoad = null;
-    private Button mButtonBack = null;
+    private ImageView mButtonLoad = null;
+    private ImageView mButtonBack = null;
     private EditText mUrlInputField = null;
 
     @Override
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         // Retrieve URL
         mUrlInputField = (EditText) findViewById(R.id.textUrl);
 
-        mButtonLoad = (Button) findViewById(R.id.btnLoadUrl);
+        mButtonLoad = (ImageView) findViewById(R.id.btnLoadUrl);
         mButtonLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mButtonBack = (Button) findViewById(R.id.btnBack);
+        mButtonBack = (ImageView) findViewById(R.id.btnBack);
         mButtonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
