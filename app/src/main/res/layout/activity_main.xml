@@ -37,7 +37,7 @@
     </LinearLayout>
 
     <TextView
-        android:text="H:250px, W: 320px"
+        android:text="H:250px, W: 300px"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
