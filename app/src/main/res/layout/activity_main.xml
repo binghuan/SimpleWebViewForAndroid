@@ -62,10 +62,21 @@
                 android:layout_width="300dp"
                 android:layout_height="250dp" />
 
+            <TextView
+                android:textColor="@android:color/white"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="Powered by BH_Lin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
 
+
     </RelativeLayout>
+
+
 
 
 </LinearLayout>
