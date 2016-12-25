@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mButtonBack = null;
     private EditText mUrlInputField = null;
 
+    private static final String TAG = "BH_MainActivity";
+    private static final boolean DBG = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +36,18 @@ public class MainActivity extends AppCompatActivity {
         mButtonLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // https://binghuan.github.io/QandACard/index2oin1.html
-                mWebView.loadUrl(mUrlInputField.getText().toString());
+                String inputString = mUrlInputField.getText().toString();
+                if (inputString == null || inputString.trim().length() == 0) {
+                    return;
+                }
+
+                if (inputString.startsWith("http://") ||
+                        inputString.startsWith("https://") ||
+                        inputString.startsWith("javascript:")) {
+                    mWebView.loadUrl(mUrlInputField.getText().toString());
+                } else {
+                    mWebView.loadData(mUrlInputField.getText().toString(), "text/html", "UTF-8");
+                }
             }
         });
 
