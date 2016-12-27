@@ -50,14 +50,10 @@ public class MainActivity extends AppCompatActivity {
                         inputString.startsWith("javascript:")) {
                     mWebView.loadUrl(inputString);
                 } else {
-                    // NG Solution to load page into data uri. it's caused the cookie can not be written.
-                    //mWebView.loadData(inputString, "text/html; charset=UTF-8;", null);
-
-
-                    // New solution: Android WebView Cookies
-                    // Reference: http://tobias-johansson-blog.logdown.com/posts/256966-android-webview-cookies
-                    mWebView = new WebView(mContext);
-                    mWebView.loadDataWithBaseURL("http://localhost/", inputString, "text/html", "utf-8", null);
+                    mWebView.loadData(inputString, "text/html; charset=UTF-8;", null);
+                    //mWebView = new WebView(mContext);
+                    // New solution
+                    //mWebView.loadDataWithBaseURL("http://localhost/", inputString, "text/html", "utf-8", null);
 
                 }
             }
