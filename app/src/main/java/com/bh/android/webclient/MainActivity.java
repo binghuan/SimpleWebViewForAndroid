@@ -1,9 +1,11 @@
 package com.bh.android.webclient;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         mContext = this;
 
+        CookieManager.getInstance().setAcceptCookie(true);
+
         // Retrieve URL
         mUrlInputField = (EditText) findViewById(R.id.textUrl);
 
@@ -44,9 +48,17 @@ public class MainActivity extends AppCompatActivity {
                 if (inputString.startsWith("http://") ||
                         inputString.startsWith("https://") ||
                         inputString.startsWith("javascript:")) {
-                    mWebView.loadUrl(mUrlInputField.getText().toString());
+                    mWebView.loadUrl(inputString);
                 } else {
-                    mWebView.loadData(mUrlInputField.getText().toString(), "text/html", "UTF-8");
+                    // NG Solution to load page into data uri. it's caused the cookie can not be written.
+                    //mWebView.loadData(inputString, "text/html; charset=UTF-8;", null);
+
+
+                    // New solution: Android WebView Cookies
+                    // Reference: http://tobias-johansson-blog.logdown.com/posts/256966-android-webview-cookies
+                    mWebView = new WebView(mContext);
+                    mWebView.loadDataWithBaseURL("http://localhost/", inputString, "text/html", "utf-8", null);
+
                 }
             }
         });
@@ -60,6 +72,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mWebView = (WebView) findViewById(R.id.webview);
+
+        //20161228@BH_Lin: Method to debug the WebView.
+        // Reference: https://developers.google.com/web/tools/chrome-devtools/remote-debugging/webviews
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            mWebView.setWebContentsDebuggingEnabled(true);
+        }
+
         mWebView.setWebChromeClient(new WebChromeClient());
         mWebView.setWebViewClient(new WebViewClient());
         mWebView.clearCache(true);

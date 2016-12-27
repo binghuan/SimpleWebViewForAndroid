@@ -30,6 +30,7 @@
             android:layout_weight="1"
             android:background="@android:color/white"
             android:minLines="3"
+            android:maxLines="10"
             android:text="https://binghuan.github.io/QandACard/index2oin1.html" />
 
         <ImageView
