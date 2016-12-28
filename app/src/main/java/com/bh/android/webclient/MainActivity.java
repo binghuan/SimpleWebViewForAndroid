@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         mContext = this;
 
-        CookieManager.getInstance().setAcceptCookie(true);
+
 
         // Retrieve URL
         mUrlInputField = (EditText) findViewById(R.id.textUrl);
@@ -50,10 +50,11 @@ public class MainActivity extends AppCompatActivity {
                         inputString.startsWith("javascript:")) {
                     mWebView.loadUrl(inputString);
                 } else {
-                    mWebView.loadData(inputString, "text/html; charset=UTF-8;", null);
-                    //mWebView = new WebView(mContext);
-                    // New solution
-                    //mWebView.loadDataWithBaseURL("http://localhost/", inputString, "text/html", "utf-8", null);
+                    //mWebView.loadData(inputString, "text/html; charset=UTF-8;", null);
+
+                    //20161228@BH_Lin:
+                    // New solution to solve Google Analytics reporting issue.
+                    mWebView.loadDataWithBaseURL("http://localhost/", inputString, "text/html", "utf-8", null);
 
                 }
             }
@@ -68,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mWebView = (WebView) findViewById(R.id.webview);
+
+        CookieManager cookieMgr = CookieManager.getInstance();
+        cookieMgr.setAcceptCookie(true);
+        //cookieMgr.setAcceptThirdPartyCookies(mWebView, true);
 
         //20161228@BH_Lin: Method to debug the WebView.
         // Reference: https://developers.google.com/web/tools/chrome-devtools/remote-debugging/webviews
